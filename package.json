@@ -1,0 +1,32 @@
+{
+  "name": "demo-app",
+  "version": "1.0.0",
+  "description": "Node demo app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "./node_modules/mocha/bin/mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasp90/node-demo-app.git"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "Lucas Perea",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucasp90/node-demo-app/issues"
+  },
+  "homepage": "https://github.com/lucasp90/node-demo-app#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
