@@ -14,20 +14,17 @@ pipeline {
             }
         }
 
-        stage('Publish') {
+        stage('deploy') {
             when {
                 branch 'master'
             }
-            docker.image('docker').inside {
-                withDockerRegistry([ credentialsId: "dockerhub-credentials", url: "" ]) {
-                    stage("Build image") {
-                        sh 'docker build -t lucasperea/node-demo-app:latest .'
-                    }
-                    stage("Push image") {
-                        sh 'docker push lucasperea/node-demo-app:latest'
-                    }
+            
+            withDockerRegistry([ credentialsId: "dockerhub-credentials", url: "" ]) {
+                docker.image('docker').inside {
+                    sh 'docker build -t lucasperea/node-demo-app:latest .'
+                    sh 'docker push lucasperea/node-demo-app:latest'
                 }
             }
-        }                
+        }     
     }
 }
