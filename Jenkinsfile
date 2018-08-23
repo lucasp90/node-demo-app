@@ -1,7 +1,8 @@
 pipeline {
-    agent { docker { image 'node:10' } }
+    agent none
     stages {
         stage('build') {
+            agent { docker { image 'node:10' } }
             steps {
                 sh 'npm --version'
                 sh 'npm install'
@@ -9,18 +10,17 @@ pipeline {
         }
 
         stage('test') {
+            agent { docker { image 'node:10' } }
             steps {
                 sh 'npm test'
             }
         }
 
         stage('deploy') {
+            agent { docker { image 'docker' } }
+
             when {
                 branch 'master'
-            }
-
-            agent {
-                docker { image 'docker' }
             }
             
             steps {
