@@ -14,12 +14,13 @@ pipeline {
             }
         }
 
-        stage('deploy') {
-            when {
-                branch 'master'
-            }
-            
-            docker.image('docker').inside {
+
+        docker.image('docker').inside {
+            stage('deploy') {
+                when {
+                    branch 'master'
+                }
+                
                 withDockerRegistry([ credentialsId: "dockerhub-credentials", url: "" ]) {
                     sh 'docker build -t lucasperea/node-demo-app:latest .'
                     sh 'docker push lucasperea/node-demo-app:latest'
