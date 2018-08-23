@@ -31,9 +31,9 @@ pipeline {
             }
         }
 
-        stage('publish') {
+        stage('deploy') {
             agent { any }
-            
+
             when {
                 branch 'master'
             }
