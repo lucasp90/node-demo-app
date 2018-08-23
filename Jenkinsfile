@@ -19,8 +19,8 @@ pipeline {
                 branch 'master'
             }
             
-            withDockerRegistry([ credentialsId: "dockerhub-credentials", url: "" ]) {
-                docker.image('docker').inside {
+            docker.image('docker').inside {
+                withDockerRegistry([ credentialsId: "dockerhub-credentials", url: "" ]) {
                     sh 'docker build -t lucasperea/node-demo-app:latest .'
                     sh 'docker push lucasperea/node-demo-app:latest'
                 }
