@@ -18,14 +18,16 @@ pipeline {
             when {
                 branch 'master'
             }
-            
+
             agent {
                 docker { image 'docker' }
             }
             
-            withDockerRegistry([ credentialsId: "dockerhub-credentials", url: "" ]) {
-                sh 'docker build -t lucasperea/node-demo-app:latest .'
-                sh 'docker push lucasperea/node-demo-app:latest'
+            steps {
+                withDockerRegistry([ credentialsId: "dockerhub-credentials", url: "" ]) {
+                    sh 'docker build -t lucasperea/node-demo-app:latest .'
+                    sh 'docker push lucasperea/node-demo-app:latest'
+                }
             }
         }     
     }
